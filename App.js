@@ -2,10 +2,10 @@ import { useCallback, useState } from 'react';
 import { Platform, StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from "expo-splash-screen";
 
 SplashScreen.preventAutoHideAsync();
-
 
 import Colors from './constants/colors';
 import GameScreen from './screens/GameScreen';
@@ -66,24 +66,27 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      colors={[Colors.primary700, Colors.secondary500]}
-      style={styles.rootContainer}
-    >
-      <ImageBackground
-        source={require("./assets/images/background.png")}
+    <>
+      <StatusBar style="light"/>
+      <LinearGradient
+        colors={[Colors.primary700, Colors.secondary500]}
         style={styles.rootContainer}
-        resizeMode="cover"
-        imageStyle={styles.backgroundImage}
       >
-        <SafeAreaView
-          style={styles.androidSafeArea}
-          onLayout={onLayoutRootView}
+        <ImageBackground
+          source={require("./assets/images/background.png")}
+          style={styles.rootContainer}
+          resizeMode="cover"
+          imageStyle={styles.backgroundImage}
         >
-          {screen}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+          <SafeAreaView
+            style={styles.androidSafeArea}
+            onLayout={onLayoutRootView}
+          >
+            {screen}
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
